@@ -17,9 +17,7 @@ CREATE TABLE `shopping`.`user` (
   
 DROP TABLE `shopping`.`user`;
 SELECT * FROM shopping.user;
-
-delete from shopping.user where username='a';
-
+  
 insert into shopping.user (Username, Password, Firstname, Lastname, Email, Gender, Dob, Address, Contact) values ('chewes0', 'Z66ETbOZ', 'Chauncey', 'Hewes', 'chewes0@instagram.com', 'Male', '1980-12-09', '83358 Nelson Lane', '227-759-9990');
 insert into shopping.user (Username, Password, Firstname, Lastname, Email, Gender, Dob, Address, Contact) values ('hsunman1', 'gykeI38I', 'Hugibert', 'Sunman', 'hsunman1@nature.com', 'Male', '1961-05-23', '30560 Northridge Circle', '115-731-8097');
 insert into shopping.user (Username, Password, Firstname, Lastname, Email, Gender, Dob, Address, Contact) values ('jbarrim2', '7PGb8A2', 'Jedediah', 'Barrim', 'jbarrim2@vkontakte.ru', 'Male', '2013-11-23', '3 Green Street', '558-371-7471');
@@ -30,6 +28,7 @@ insert into shopping.user (Username, Password, Firstname, Lastname, Email, Gende
 insert into shopping.user (Username, Password, Firstname, Lastname, Email, Gender, Dob, Address, Contact) values ('kkeavy7', '50Ns8Ix1KgS', 'Klarrisa', 'Keavy', 'kkeavy7@flickr.com', 'Female', '1988-11-25', '63 Lakewood Way', '674-124-0858');
 insert into shopping.user (Username, Password, Firstname, Lastname, Email, Gender, Dob, Address, Contact) values ('amarvin8', 'zuF2qBou5Fml', 'Alice', 'Marvin', 'amarvin8@mac.com', 'Female', '2003-03-20', '87675 Springview Place', '496-341-4861');
 insert into shopping.user (Username, Password, Firstname, Lastname, Email, Gender, Dob, Address, Contact) values ('klloyds9', 'CU1nMT', 'Katleen', 'Lloyds', 'klloyds9@gnu.org', 'Female', '2007-02-15', '3 Sachs Parkway', '432-943-0928');
+insert into shopping.user (Username, Password, Firstname, Lastname, Email, Gender, Dob, Address, Contact) values ('a', 'a', 'a', 'a', 'a@gnu.org', 'Female', '2007-02-15', '3 Sachs Parkway', '432-463-0928');
 
   
   
@@ -151,50 +150,23 @@ insert into shopping.product_shoe VALUES(10,'Nike Club Shoes','For clubbing',01.
 
 
 CREATE TABLE `shopping`.`cart` (
-  `Cart_id` INT AUTO_INCREMENT,
+  `Cart_Id` INT NOT NULL AUTO_INCREMENT,
   `Username` VARCHAR(45) NOT NULL,
   `Product_Name` VARCHAR(45) NOT NULL,
-  `Product_desc` VARCHAR(45) NOT NULL,
+  `Product_Desc` VARCHAR(45) NOT NULL,
   `Product_Price` DOUBLE NOT NULL,
   `Quantity` INT NOT NULL,
-  `Total_Product_Price` DOUBLE NOT NULL,
+  `Total_Quantity_Price` DOUBLE NOT NULL,
   PRIMARY KEY (`Cart_id`),
   CONSTRAINT `Username`
     FOREIGN KEY (`Username`)
-    REFERENCES `shopping`.`user` (`Username`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `Product_Id`
-    FOREIGN KEY (`Product_Id`)
-    REFERENCES `shopping`.`product` (`Product_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    REFERENCES `shopping`.`user` (`Username`));
 
   DROP TABLE `shopping`.`Cart`;
 
-SELECT * FROM Cart;
+SELECT * FROM cart;
  
 
+SELECT sum(Product_Price) AS Payable FROM cart WHERE Username='a';
 
-CREATE TABLE `shopping`.`carthistory` (
-  `CartHist_Id` INT NOT NULL AUTO_INCREMENT,
-  `Username` VARCHAR(45) NOT NULL,
-  `Product_Id` INT NOT NULL,
-  `Purchase_Date` DATE NOT NULL,
-  `Total_Price` DOUBLE NOT NULL,
-  PRIMARY KEY (`CartHist_Id`),
-  INDEX `Username_idx` (`Username` ASC),
-  INDEX `Product_Id_idx` (`Product_Id` ASC),
-  CONSTRAINT `Username_fk`
-    FOREIGN KEY (`Username`)
-    REFERENCES `shopping`.`cart` (`Username`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `Product_Id_fk`
-    FOREIGN KEY (`Product_Id`)
-    REFERENCES `shopping`.`cart` (`Product_Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
 
-DROP TABLE carthistory;
-SELECT * FROM carthistory;
