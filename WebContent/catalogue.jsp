@@ -11,8 +11,21 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display";
   letter-spacing: 5px;
 }
-</style>
+   .item1{background:LightSkyBlue;}
 
+  
+  .container {
+    font-size: 40px;
+    min-height: 300px;
+    width: 100%;
+    background: #F5F5F5;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+
+</style>
 
 </head>
 <body>
@@ -71,14 +84,14 @@ h1, h2, h3, h4, h5, h6 {
 <hr>
 
 	<!-- Product Section -->
-		<div class="w3-container w3-padding-64" id="contact">
-			<center>
+		<div class="w3-container w3-padding-64" id="contact" class="container">
+			
 			<h1>Our Products</h1>
 			<br>
-				
+			  
 				<c:forEach var="product" items="${ PRODUCT_LIST }">
 				
-					<form action="CartControllerServlet">
+					<form action="CartControllerServlet" class="item1">
 						<table>
 						<tr>
 							<td><input name="productName" value="${ product.product_name }" readonly></td>
@@ -86,12 +99,12 @@ h1, h2, h3, h4, h5, h6 {
 						<tr>
 							<td>Description : <input name="productDesc" value="${ product.product_description }" readonly></td>
 							<td><input name="productPrice" value="${ product.product_price }" readonly style="text-align:right"></td>
+						   
 						</tr>
 						<tr>
 							<td></td>
 							<td>
 								<input type="hidden" name="username" value="${ username }">
-								<input type="hidden" name="quantity" value="3" />
 								<input type="hidden" name="command" value="ADD" />
 								<input type="submit" value="add to cart"/>
 							</td>
@@ -103,25 +116,11 @@ h1, h2, h3, h4, h5, h6 {
 					
 					</c:forEach>
 				
-				</center>	
 				
 				
 			
 		</div>
-		
-
-
-		
-			
-
 	
-
- 
-
-      
-      
-    
-  </div>
   
 
 <!-- End page content --> 

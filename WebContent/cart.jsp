@@ -16,17 +16,33 @@
 				  font-family: "Playfair Display";
 				  letter-spacing: 5px;
 				}
+				
+				table {
+				
+				font-family: "Calibri";
+				width: 100%;
+				
+				}
+				
+				tr, th, td {
+				border-bottom: 1px solid #ddd;
+				text-align: center;
+			
+				}
+				
+				td:hover{font-weight:bold;}
+				
+				tr:hover {background-color: #f5f5f5;}
+				
 		</style>
 </head>
 <body>
  <div class="w3-top">
   <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
-    <a href="#home" class="w3-bar-item w3-button">Singapore Shopping Spree</a>
+    <a href="#home" class="w3-bar-item w3-button">Avensys ShopLah!</a>
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
-      <a href="#about" class="w3-bar-item w3-button">About</a>
-      <a href="#menu" class="w3-bar-item w3-button">Menu</a>
-      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+      <a href="catalogue.jsp" class="w3-bar-item w3-button">continue shopping</a>
     </div>
   </div>
 </div>
@@ -40,36 +56,70 @@
     <div class="w3-col m6 w3-padding-large">
         <br>
       <h1 class="w3-center">Review your purchase</h1><br>
-      <table border="1" style="text-align:center">
+      <table>
         <tr>
-       		<th>Cart_Id</th>
-       		<th>User</th>
             <th>Product_Name</th>
             <th>Description</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Total_Price_Of_Item</th>
+            <th>Total Price Of Item</th>
             
             
         </tr>  
         <c:forEach var="cartItems" items="${CART_LIST}">
       	  <tr>
         
-        
-        		<td>${ cartItems.cartId }</td>
-                <td>${ cartItems.user } </td>
+        	 <c:url var="deleteCartId" value="CartControllerServlet">
+				<c:param name="command" value="DELETE" />
+				<c:param name="cartId" value="${ cartItems.cartId }"/>
+				<c:param name="username" value="${ cartItems.user }"/>
+			</c:url>
+			
+			<c:url var="updateCartId" value="CartControllerServlet">
+				<c:param name="command" value="SELECTCART" />
+				<c:param name="cartId" value="${ cartItems.cartId }"/>
+				<c:param name="username" value="${ cartItems.user }"/>
+			</c:url>
+        	
+        		<!--  <td>${ cartItems.cartId }</td>
+                <td>${ cartItems.user } </td> -->
                	<td>${ cartItems.product_name }</td>
                	<td>${ cartItems.product_desc }</td>
                	<td>${ cartItems.product_price }</td>
                	<td>${ cartItems.quantity }</td>
                	<td>${ cartItems.total_Quantity_Price }</td>
-          		<td><input type="submit" value="Edit Quantity"/></td>
-           		<td><input type="submit" value="Remove item"/></td>
-           		<td><input type="submit" value="Purchase Now"/></td>
+           		<td><a href="${ deleteCartId }" class="w3-bar-item w3-button">Remove Item</a></td>
+           		<td><a href="${ updateCartId }" class="w3-bar-item w3-button">Update Quantity</a></td>
+           		
           </tr>	
+         
         </c:forEach> 
-            
-            
+            	
+          <!--   	<c:forEach var="cartItems" items="${CART_LIST}"> -->
+            	
+            	<c:url var="purchase" value="CartControllerServlet">
+					<c:param name="command" value="PUCHASE" />
+					<c:param name="cartId" value="${ cartItems.cartId }"/>
+					<c:param name="username" value="${ cartItems.user }"/>
+				<!-- 	<c:param name="product_name" value="${ cartItems.product_name }"/>
+		            <c:param name="product_desc" value="${ cartItems.product_desc }"/>
+		            <c:param name="product_price" value="${ cartItems.product_price }"/>
+		            <c:param name="quantity" value="${ cartItems.quantity }"/>
+		            <c:param name="total_Quantity_Price" value="${ cartItems.total_Quantity_Price }"/>
+		            <c:param name="payable" value="${ PAYABLE }"/>  -->
+					
+				</c:url>
+		<!-- 	</c:forEach>-->
+			
+             <tr>
+	          	<td></td>
+	          	<td></td>
+	          	<td></td>
+	          	<td></td>
+	          	<td><input name="payable_amount" value="${ PAYABLE }" readonly></td>
+	          	<td><a href="${ purchase }" class="w3-bar-item w3-button">Pay</a></td>
+         	 </tr>
+          
        
           
       </table>
@@ -88,7 +138,7 @@
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   
 <!-- End page content -->
-</div>
+
 
 <!-- Footer -->
 <footer class="w3-center w3-light-grey w3-padding-32">
@@ -100,3 +150,4 @@
 
 </body>
 </html>
+
