@@ -2,7 +2,6 @@ package com.shoppingcart.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.shoppingcart.dataUtil.UserDataUtil;
-import com.shoppingcart.entity.Product;
 import com.shoppingcart.entity.User;
 
 /**
@@ -28,7 +26,7 @@ public class UserControllerServlet extends HttpServlet {
 	// initialize user's data util
 	private UserDataUtil userDataUtil;
 	
-	@Resource(name="jdbc/shopping") // TODO: add database schema name
+	@Resource(name="jdbc/Shopping") // TODO: add database schema name
 	private DataSource dataSource;
 	
 	@Override
@@ -57,9 +55,6 @@ public class UserControllerServlet extends HttpServlet {
 				theCommand = "REGISTER";
 			}
 			switch(theCommand) {
-			case "VIEW":
-				viewUser(request,response);
-				break;
 			case "LOGIN":
 				loginUser(request,response);
 				break;
@@ -103,19 +98,19 @@ public class UserControllerServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private void viewUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	//private void viewUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		/**
 		 * 1. retrieve user id from page
 		 * 2. execute sql statement in data util and retrieve user data from the user id
 		 * 3. save result set to new student object and set attribute
 		 */
-		String user_username = request.getParameter("");
+	/*	String user_username = request.getParameter("");
 		User userProfile = userDataUtil.viewUserProfile(user_username);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/.jsp"); // TODO: change the jsp to the profile page
 		request.setAttribute("", userProfile); // TODO: remember set the attribute name
 		dispatcher.forward(request, response);
-	}
+	}*/
 	
 	private void loginUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
 		/**
