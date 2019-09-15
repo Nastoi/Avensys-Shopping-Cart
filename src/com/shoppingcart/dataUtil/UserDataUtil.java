@@ -65,10 +65,8 @@ public class UserDataUtil {
 		}
 		
 	}
-	public User viewUserProfile(String user_username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
 	public User loginUser(String input_email, String input_password) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -132,5 +130,11 @@ public class UserDataUtil {
 		finally {
 			close(con,stmt,rst);
 		}
+	}
+	
+	
+	public User getUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
