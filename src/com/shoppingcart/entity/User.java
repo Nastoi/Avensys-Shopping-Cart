@@ -69,6 +69,11 @@ public class User {
 		this.address = address;
 		this.contact = contact;
 	}
+	public User(String username, String email) {
+		this.username=username;
+		this.email=email;
+	}
+
 	// setter getter methods
 	public int getUser_id() {
 		return user_id;

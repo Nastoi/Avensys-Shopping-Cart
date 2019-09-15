@@ -5,9 +5,19 @@ public class CartProduct {
 	
 	private String user, product_name,product_desc;
 	private int cartId, quantity;
-	private double total_Quantity_Price, product_price;
+	private double total_Quantity_Price, product_price, payable;
 	
 	
+
+	public CartProduct(double payable) {
+		super();
+		this.payable = payable;
+	}
+
+
+
+
+
 
 	public CartProduct(int cartId, String user, String product_name, String product_desc, double product_price ,
 		int quantity, double total_Quantity_Price ) {
@@ -20,6 +30,20 @@ public class CartProduct {
 		this.product_price = product_price;
 	}
 
+
+
+
+
+
+	public CartProduct( int cartId, String user, String product_name, String product_desc, double product_price, int quantity) {
+		super();
+		this.user = user;
+		this.product_name = product_name;
+		this.product_desc = product_desc;
+		this.product_price = product_price;
+		this.cartId = cartId;
+		this.quantity = quantity;
+	}
 
 
 	public String getUser() {
@@ -102,6 +126,24 @@ public class CartProduct {
 
 	public void setProduct_price(double product_price) {
 		this.product_price = product_price;
+	}
+
+
+
+
+
+
+	public double getPayable() {
+		return payable;
+	}
+
+
+
+
+
+
+	public void setPayable(double payable) {
+		this.payable = payable;
 	}
 
 
